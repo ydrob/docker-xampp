@@ -12,7 +12,7 @@ RUN curl -Lo xampp-linux-installer.run $XAMPP_URL
 # Here, we build the xampp image
 ################################################################################
 FROM debian:${BASE_DEBIAN}
-LABEL maintainer="Tomas Jasek<tomsik68 (at) gmail (dot) com>"
+LABEL maintainer="Yauheni Drob"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -22,7 +22,7 @@ RUN echo 'root:root' | chpasswd
 # See https://docs.docker.com/develop/develop-images/instructions/#apt-get for apt-get guidelines
 RUN apt-get update --fix-missing && \
   # curl is needed to download the xampp installer, net-tools provides netstat command for xampp
-  apt-get install -y --no-install-recommends curl net-tools openssh-server \
+  apt-get install -y --no-install-recommends curl net-tools openssh-server cron \
       supervisor nano vim less && \
   rm -rf /var/lib/apt/lists/*
 
